@@ -1,0 +1,276 @@
+/* Palette urushi: fondo di lacca nero-blu, testo di seta grezza, indaco e oro.
+   L'unico rosso e' il vermiglio, e serve solo per i voli e gli avvisi:
+   se lo usi anche altrove smette di voler dire "attenzione". */
+:root{
+  --sumi:#0e1218;
+  --sumi-2:#151c25;
+  --sumi-3:#1e2833;
+  --kinari:#e9e3d7;
+  --kinari-soft:#a2adb8;
+  --ai:#86abdf;
+  --ai-deep:#3d5f93;
+  --kin:#cfa646;
+  --shu:#e0705a;
+  --rule:rgba(233,227,215,.12);
+  --rule-kin:rgba(207,166,70,.34);
+  --rail:4.6rem;
+  --pad:clamp(1.15rem,5vw,3rem);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--sumi);color:var(--kinari);
+  font-family:"Manrope",system-ui,sans-serif;font-size:16px;font-weight:400;
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+/* Il riflesso di luce sulla lacca: una sola sorgente in alto, ferma. */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(120% 55% at 50% -18%,rgba(134,171,223,.13),transparent 62%),
+    radial-gradient(80% 40% at 88% 4%,rgba(207,166,70,.07),transparent 60%);
+}
+.wrap{position:relative;z-index:1;max-width:62rem;margin:0 auto;padding:0 var(--pad)}
+a{color:var(--ai);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--kinari)}
+
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:400}
+.jp{font-family:"Noto Serif JP",serif;font-weight:400}
+
+/* ---------- intestazione ---------- */
+.hero{padding:clamp(2.5rem,9vw,5.5rem) 0 clamp(1.75rem,5vw,3rem);position:relative}
+.eyebrow{
+  font-family:"JetBrains Mono",monospace;font-size:.68rem;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--kin);margin:0 0 1.5rem;
+}
+.hero h1{
+  font-family:"Instrument Serif",serif;font-weight:400;
+  font-size:clamp(3.1rem,14vw,7rem);line-height:.88;letter-spacing:-.015em;
+  margin:0 0 .7rem;
+}
+.hero h1 em{font-style:italic;color:var(--kin)}
+.hero .dates{
+  font-family:"Instrument Serif",serif;font-size:clamp(1.1rem,3.6vw,1.6rem);
+  color:var(--kinari-soft);margin:0 0 2.1rem;max-width:34ch;
+}
+
+/* Il marchio verticale: scrittura giapponese dall'alto in basso, appesa a un
+   filo d'oro. E' la firma della pagina, non ripeterla altrove. */
+.mark{
+  position:absolute;top:clamp(2.4rem,8vw,5.2rem);right:0;
+  display:flex;flex-direction:column;align-items:center;gap:.7rem;
+  color:var(--kin);
+}
+.mark .glyphs{
+  writing-mode:vertical-rl;font-family:"Noto Serif JP",serif;
+  font-size:clamp(1.5rem,5vw,2.2rem);letter-spacing:.18em;
+}
+.mark .thread{width:1px;flex:1;min-height:clamp(2rem,7vw,3.4rem);background:linear-gradient(var(--kin),transparent)}
+
+.routestrip{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .6rem;
+  border-top:1px solid var(--rule-kin);border-bottom:1px solid var(--rule-kin);
+  padding:.95rem 0;font-family:"JetBrains Mono",monospace;
+  font-size:clamp(.74rem,2.8vw,.9rem);
+}
+.routestrip b{font-weight:500;color:var(--kinari)}
+.routestrip i{font-style:normal;color:var(--ai-deep)}
+.routestrip .air{color:var(--shu)}
+.counter{
+  margin:1.7rem 0 0;font-family:"JetBrains Mono",monospace;font-size:.74rem;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--kinari-soft);
+}
+.counter b{color:var(--kin);font-weight:500;font-size:1.15rem}
+
+/* ---------- sezioni ---------- */
+section{padding:clamp(2.8rem,8vw,4.8rem) 0;border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0}
+.shead{margin:0 0 2rem;display:flex;align-items:flex-start;gap:1.1rem}
+.shead .idx{
+  font-family:"JetBrains Mono",monospace;font-size:.68rem;letter-spacing:.1em;
+  color:var(--kin);padding-top:.85rem;flex:none;
+}
+.shead h2{
+  font-family:"Instrument Serif",serif;font-weight:400;letter-spacing:-.01em;
+  font-size:clamp(1.9rem,6.4vw,2.9rem);margin:0;line-height:1.05;
+}
+.shead p{margin:.55rem 0 0;color:var(--kinari-soft);max-width:46ch}
+
+/* ---------- voli ---------- */
+.flights{display:grid;gap:.75rem}
+.flight{
+  background:var(--sumi-2);border:1px solid var(--rule);
+  border-left:2px solid var(--shu);padding:1rem 1.15rem;display:grid;gap:.6rem;
+}
+.flight-top{
+  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  font-family:"JetBrains Mono",monospace;font-size:.7rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--kinari-soft);
+}
+.flight-mid{display:flex;align-items:center;gap:.9rem}
+.flight-mid .code{
+  font-family:"Instrument Serif",serif;font-size:clamp(1.6rem,6.5vw,2.2rem);
+  line-height:1;white-space:nowrap;
+}
+.flight-mid .code .mono{font-size:.44em;color:var(--kinari-soft);letter-spacing:.04em}
+.flight-mid .span{
+  flex:1;height:1px;background:repeating-linear-gradient(to right,var(--ai-deep) 0 5px,transparent 5px 10px);
+}
+.flight-bot{
+  display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;
+  font-family:"JetBrains Mono",monospace;font-size:.76rem;color:var(--kinari-soft);
+}
+.flight-bot b{color:var(--kinari);font-weight:500}
+.tbd{color:var(--shu)}
+
+/* ---------- il binario dei giorni ---------- */
+.days{display:grid}
+.day{
+  display:grid;grid-template-columns:var(--rail) 1fr;
+  column-gap:clamp(.9rem,3vw,1.5rem);padding:0 0 2.2rem;
+}
+/* La data vive nel binario di sinistra: mese piccolo, numero grande, giorno. */
+.day-mark{
+  position:relative;text-align:right;padding-right:clamp(.9rem,3vw,1.5rem);
+  font-family:"JetBrains Mono",monospace;line-height:1;
+}
+.day-mark::after{
+  content:"";position:absolute;right:0;top:.15rem;bottom:-2.2rem;width:1px;
+  background:var(--rule-kin);
+}
+.day:last-child .day-mark::after{bottom:auto;height:2.5rem}
+/* Il rombo sul filo: geometrico, non un pallino. */
+.day-mark::before{
+  content:"";position:absolute;right:-3.5px;top:.55rem;width:7px;height:7px;
+  background:var(--kin);transform:rotate(45deg);
+}
+.day.air .day-mark::before{background:var(--shu)}
+.day-mark .dnum{display:block;font-size:clamp(1.5rem,5.5vw,2rem);font-weight:300;color:var(--kinari)}
+.day-mark .dwd{display:block;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--kin);margin-top:.35rem}
+.day-mark .dmon{display:block;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--kinari-soft);margin-top:.2rem}
+.day-mark .drange{display:block;font-size:.62rem;letter-spacing:.1em;color:var(--kinari-soft);margin-top:.5rem}
+
+/* Sul telefono il binario si restringe: la colonna del testo vale piu' della
+   spaziatura, e la data ci sta lo stesso. */
+@media(max-width:30rem){:root{--rail:3.4rem}}
+
+.day-body{min-width:0;padding-top:.1rem}
+.day-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.55rem .8rem;margin-bottom:.5rem}
+.day-body h3{
+  font-family:"Instrument Serif",serif;font-weight:400;
+  font-size:clamp(1.5rem,5.5vw,2.1rem);margin:0;line-height:1.05;
+}
+.day-body h3 .jp{font-size:.5em;color:var(--kin);margin-left:.55rem;vertical-align:.16em;letter-spacing:.06em}
+.tag{
+  font-family:"JetBrains Mono",monospace;font-size:.64rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--kinari-soft);
+  border:1px solid var(--rule);padding:.16rem .55rem;
+}
+.tag.hot{color:var(--shu);border-color:rgba(224,112,90,.4)}
+.day-body ul{margin:.5rem 0 0;padding-left:1.05rem}
+.day-body li{margin:.32rem 0}
+.day-body li::marker{color:var(--ai-deep)}
+.day-body li b{font-weight:700;color:var(--kinari)}
+
+/* La tratta chiude il giorno da cui si parte, non quello in cui si arriva:
+   se cambi il mezzo di uno spostamento, la classe .air va spostata di conseguenza. */
+.leg{
+  display:flex;align-items:center;gap:.75rem;margin:1.15rem 0 0;
+  font-family:"JetBrains Mono",monospace;font-size:.67rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--kinari-soft);
+}
+.leg::before{content:"";width:1.7rem;height:1px;flex:none;background:var(--ai-deep)}
+.leg.air::before{background:repeating-linear-gradient(to right,var(--shu) 0 4px,transparent 4px 8px)}
+.leg .m{color:var(--ai)}
+.leg.air .m{color:var(--shu)}
+
+/* ---------- note ---------- */
+.note{
+  margin:.9rem 0 0;padding:.65rem .85rem;background:var(--sumi-2);
+  border-left:2px solid var(--ai-deep);font-size:.9rem;color:var(--kinari-soft);
+}
+.note b{font-weight:700;color:var(--kinari)}
+.note.warn{border-left-color:var(--shu)}
+.note.tip{border-left-color:var(--kin)}
+
+/* ---------- tabelle ---------- */
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:34rem;font-size:.87rem}
+th,td{text-align:left;padding:.62rem .7rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{
+  font-family:"JetBrains Mono",monospace;font-size:.64rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--kin);font-weight:500;white-space:nowrap;
+}
+td{color:var(--kinari-soft)}
+td b{color:var(--kinari)}
+td.n{font-family:"JetBrains Mono",monospace;white-space:nowrap;color:var(--kinari)}
+
+/* ---------- schede ---------- */
+.grid{display:grid;gap:1.5rem}
+.tablewrap+.grid,.note+.grid{margin-top:2.3rem}
+@media(min-width:46rem){.grid{grid-template-columns:1fr 1fr;gap:1.8rem 2.6rem}}
+.card h4{
+  font-family:"JetBrains Mono",monospace;font-size:.68rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--kin);margin:0 0 .6rem;font-weight:500;
+  padding-bottom:.5rem;border-bottom:1px solid var(--rule);
+}
+.card p{margin:0 0 .55rem;color:var(--kinari-soft)}
+.card ul{margin:0;padding-left:1.05rem;color:var(--kinari-soft)}
+.card li{margin:.26rem 0}
+.card li::marker{color:var(--ai-deep)}
+.card b{color:var(--kinari)}
+
+/* ---------- conto delle notti ---------- */
+.ledger{
+  display:flex;flex-wrap:wrap;gap:.6rem;margin:1.6rem 0 0;
+  font-family:"JetBrains Mono",monospace;font-size:.72rem;
+}
+.ledger span{
+  border:1px solid var(--rule);padding:.35rem .7rem;color:var(--kinari-soft);
+}
+.ledger span b{color:var(--kin);font-weight:500}
+.ledger .tot{border-color:var(--rule-kin);color:var(--kinari)}
+
+/* ---------- checklist ---------- */
+.check{list-style:none;margin:0;padding:0;columns:1}
+@media(min-width:46rem){.check{columns:2;column-gap:2.6rem}}
+.check li{margin:0 0 .55rem;break-inside:avoid}
+.check label{display:flex;gap:.65rem;align-items:flex-start;cursor:pointer}
+.check input{margin-top:.38rem;accent-color:var(--kin);flex:none;width:1rem;height:1rem}
+.check input:checked+span{color:var(--kinari-soft);text-decoration:line-through}
+
+/* ---------- appunti ---------- */
+.nota textarea{
+  width:100%;min-height:9.5rem;resize:vertical;
+  padding:.85rem .95rem;background:var(--sumi-2);color:var(--kinari);
+  border:1px solid var(--rule);
+  font-family:"Manrope",system-ui,sans-serif;font-size:1rem;line-height:1.6;
+}
+.nota textarea:focus{border-color:var(--ai-deep);outline:none}
+.nota textarea:disabled{opacity:.55;cursor:not-allowed}
+.nota-bar{
+  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  margin:.55rem 0 0;font-family:"JetBrains Mono",monospace;font-size:.66rem;
+  letter-spacing:.1em;color:var(--kinari-soft);
+}
+.nota-bar button{
+  font:inherit;letter-spacing:.14em;text-transform:uppercase;
+  background:none;border:1px solid var(--rule);
+  padding:.32rem .65rem;color:var(--kin);cursor:pointer;
+}
+.nota-bar button:hover{border-color:var(--rule-kin)}
+
+footer{
+  border-top:1px solid var(--rule);padding:2.2rem 0 3.2rem;
+  font-family:"JetBrains Mono",monospace;font-size:.68rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--kinari-soft);
+}
+
+/* ---------- movimento ---------- */
+.reveal{opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+}
+:focus-visible{outline:2px solid var(--kin);outline-offset:3px}
