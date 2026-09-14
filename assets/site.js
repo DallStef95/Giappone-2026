@@ -109,6 +109,30 @@
     }
   }
 
+  /* ---------- compleanno Anna · 29 ottobre ---------- */
+  function compleannoAnna() {
+    var giorno = document.querySelector('#itinerario .day:not(.air) .dnum');
+    if (!giorno || giorno.textContent.trim() !== '29') { return; }
+    var body = giorno.closest('.day-body');
+    if (!body || body.querySelector('.birthday-plan')) { return; }
+
+    var blocco = document.createElement('div');
+    blocco.className = 'note tip birthday-plan';
+    blocco.innerHTML = '<b>🎂 Compleanno di Anna · programma consigliato</b>' +
+      '<ul>' +
+        '<li><b>15:00–15:45 · Check-in Airbnb:</b> 1-chōme-16-2 Kotobuki, Taito City, Tokyo 111-0042. Prenotazione Airbnb · codice <b>HM9W9X2JWM</b>. Dopo il volo, niente programma impegnativo: lasciate i bagagli e prendetevi un po\' di tempo per rinfrescarvi.</li>' +
+        '<li><b>16:00–16:40 · Prima passeggiata ad Asakusa:</b> Kaminarimon → Nakamise-dōri → Sensō-ji. È perfetta per iniziare il viaggio senza allontanarsi dall\'alloggio.</li>' +
+        '<li><b>16:40–17:15 · Tramonto sul Sumida:</b> passeggiata verso il fiume e vista sul Tokyo Skytree. Il 29 ottobre il sole tramonta intorno alle 16:49, quindi conviene essere sul fiume prima del tramonto.</li>' +
+        '<li><b>17:15–18:15 · Pausa e brindisi:</b> rientro verso Asakusa, drink o aperitivo in zona. Meglio mantenere il ritmo rilassato dopo il viaggio.</li>' +
+        '<li><b>18:30–20:30 · Cena di sushi 🎌🍣:</b> per il compleanno punterei su un <b>omakase</b> ad Asakusa, così la cena diventa l\'esperienza speciale della giornata. Tra le opzioni da valutare: <b>Sushi Kanesho</b> (Michelin, atmosfera intima, circa 9 posti) oppure <b>Sushi Oku</b> (omakase di alto livello, anch\'esso molto raccolto). Entrambi richiedono prenotazione anticipata.</li>' +
+        '<li><b>20:30–21:30 · Dopo cena:</b> passeggiata serale tra Asakusa e il Sumida, con le luci del Sensō-ji e dello Skytree. Se avete ancora energie, brindisi finale.</li>' +
+      '</ul>' +
+      '<p><b>La mia scelta:</b> farei il 29 molto locale e romantico, senza correre per Tokyo: Asakusa + tramonto sul Sumida + <b>omakase di sushi</b>. È un modo molto più bello di festeggiare il compleanno rispetto a spostarsi dall\'altra parte della città appena arrivati.</p>' +
+      '<p><b>Nota prenotazione:</b> per una cena di compleanno consiglio di scrivere alla prenotazione che è il compleanno di Anna e chiedere se possono preparare una piccola sorpresa/dessert. La disponibilità per il 29/10/2026 va verificata al momento della prenotazione.</p>';
+
+    body.appendChild(blocco);
+  }
+
   /* ---------- contatore ---------- */
   function contatore() {
     var el = document.getElementById('counter');
@@ -214,6 +238,7 @@
 
   voliConfermati();
   contatore();
+  compleannoAnna();
   comparsa();
   checklist();
   appunti();
