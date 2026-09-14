@@ -9,6 +9,7 @@
   function voliConfermati() {
     var sezione = document.getElementById('voli'); if (!sezione) return;
     var testo = sezione.querySelector('.shead p'); if (testo) testo.textContent = 'Sei tratte aeree. Andata e ritorno internazionali con Emirates, più i due voli interni Fukuoka → Okinawa e Okinawa → Tokyo già prenotati.';
+    var idx = sezione.querySelector('.idx'); if (idx) idx.textContent = '02';
     var c = sezione.querySelector('.flights'); if (!c) return;
     c.innerHTML = '<article class="flight reveal"><div class="flight-top"><span>Mer 28 ott 2026</span><span>Emirates · EK0102</span></div><div class="flight-mid"><span class="code">MXP <span class="mono">10:25</span></span><span class="span"></span><span class="code"><span class="mono">19:20</span> DXB</span></div><div class="flight-bot"><span>Milano Malpensa <b>→</b> Dubai</span><span>5h 55m · Terminal 1 → 3</span></div></article><div class="flight-connection reveal"><b>Coincidenza a Dubai</b><span>3h 25m · 19:20 → 22:45</span></div><article class="flight reveal"><div class="flight-top"><span>Mer 28 ott 2026 → Gio 29 ott</span><span>Emirates · EK0320</span></div><div class="flight-mid"><span class="code">DXB <span class="mono">22:45</span></span><span class="span"></span><span class="code"><span class="mono">13:10</span> NRT</span></div><div class="flight-bot"><span>Dubai <b>→</b> Tokyo Narita</span><span>9h 25m · arrivo il 29 ott · Terminal 3 → 2</span></div></article><article class="flight reveal"><div class="flight-top"><span>Dom 8 nov 2026</span><span>ANA · NH2501</span></div><div class="flight-mid"><span class="code">FUK <span class="mono">13:00</span></span><span class="span"></span><span class="code"><span class="mono">14:55</span> OKA</span></div><div class="flight-bot"><span>Fukuoka <b>→</b> Okinawa (Naha)</span><span>1h 55m · Terminal di partenza D</span></div></article><article class="flight reveal"><div class="flight-top"><span>Gio 12 nov 2026</span><span>Jetstar Japan · GK338</span></div><div class="flight-mid"><span class="code">OKA <span class="mono">07:30</span></span><span class="span"></span><span class="code"><span class="mono">09:55</span> NRT</span></div><div class="flight-bot"><span>Okinawa (Naha) <b>→</b> Tokyo Narita</span><span>2h 25m · Economy · Airbus A320 · Domestic Terminal → Narita</span></div></article><div class="flight-connection reveal"><b>Coincidenza a Dubai</b><span>4h 25m · 04:40 → 09:05</span></div><article class="flight reveal"><div class="flight-top"><span>Gio 12 nov 2026 → Ven 13 nov</span><span>Emirates · EK0321</span></div><div class="flight-mid"><span class="code">NRT <span class="mono">21:30</span></span><span class="span"></span><span class="code"><span class="mono">04:40</span> DXB</span></div><div class="flight-bot"><span>Tokyo Narita <b>→</b> Dubai</span><span>12h 10m · arrivo il 13 nov · Terminal 2 → 3</span></div></article><article class="flight reveal"><div class="flight-top"><span>Ven 13 nov 2026</span><span>Emirates · EK0205</span></div><div class="flight-mid"><span class="code">DXB <span class="mono">09:05</span></span><span class="span"></span><span class="code"><span class="mono">13:10</span> MXP</span></div><div class="flight-bot"><span>Dubai <b>→</b> Milano Malpensa</span><span>7h 05m · Terminal 3 → 1</span></div></article>';
     var nota = sezione.querySelector('.note.warn'); if (nota) nota.innerHTML = '<b>Voli completati.</b> Andata: MXP → Dubai → NRT il 28/29 ottobre. Il 8 novembre FUK → OKA con ANA (NH2501). Il 12 novembre OKA → NRT con Jetstar Japan (GK338), poi NRT → Dubai → MXP.';
@@ -56,11 +57,8 @@
     }
     var pratico = document.getElementById('pratico');
     if (pratico) {
-      var testo = pratico.textContent || '';
-      if (testo.indexOf('Auto Okinawa') !== -1) {
-        var items = pratico.querySelectorAll('li');
-        for (var k = 0; k < items.length; k++) if (items[k].textContent.indexOf('Auto Okinawa') !== -1) items[k].remove();
-      }
+      var items = pratico.querySelectorAll('li');
+      for (var k = 0; k < items.length; k++) if (items[k].textContent.indexOf('Auto Okinawa') !== -1) items[k].remove();
     }
     var check = document.getElementById('checklist');
     if (check) {
