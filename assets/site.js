@@ -27,7 +27,7 @@
 
     var testo = sezione.querySelector('.shead p');
     if (testo) {
-      testo.textContent = 'Quattro blocchi di viaggio aereo. Le tratte internazionali sono confermate con Emirates; restano da completare i due voli interni Fukuoka → Okinawa e Okinawa → Tokyo.';
+      testo.textContent = 'Sei tratte aeree. Andata e ritorno internazionali con Emirates, più i due voli interni Fukuoka → Okinawa e Okinawa → Tokyo già prenotati.';
     }
 
     var contenitore = sezione.querySelector('.flights');
@@ -57,23 +57,23 @@
       '</article>' +
 
       '<article class="flight reveal">' +
-        '<div class="flight-top"><span>Dom 8 nov</span><span class="tbd">volo interno · da confermare</span></div>' +
+        '<div class="flight-top"><span>Dom 8 nov 2026</span><span>ANA · NH2501</span></div>' +
         '<div class="flight-mid">' +
-          '<span class="code">FUK <span class="mono tbd">--:--</span></span>' +
+          '<span class="code">FUK <span class="mono">13:00</span></span>' +
           '<span class="span"></span>' +
-          '<span class="code"><span class="mono tbd">--:--</span> OKA</span>' +
+          '<span class="code"><span class="mono">14:55</span> OKA</span>' +
         '</div>' +
-        '<div class="flight-bot"><span>Fukuoka <b>→</b> Naha</span><span>circa 1h 40m · orari da inserire</span></div>' +
+        '<div class="flight-bot"><span>Fukuoka <b>→</b> Okinawa (Naha)</span><span>1h 55m · Terminal di partenza D</span></div>' +
       '</article>' +
 
       '<article class="flight reveal">' +
-        '<div class="flight-top"><span>Gio 12 nov</span><span class="tbd">volo interno · da confermare</span></div>' +
+        '<div class="flight-top"><span>Gio 12 nov 2026</span><span>Jetstar Japan · GK338</span></div>' +
         '<div class="flight-mid">' +
-          '<span class="code">OKA <span class="mono tbd">--:--</span></span>' +
+          '<span class="code">OKA <span class="mono">07:30</span></span>' +
           '<span class="span"></span>' +
-          '<span class="code"><span class="mono tbd">--:--</span> <span class="tbd">???</span></span>' +
+          '<span class="code"><span class="mono">09:55</span> NRT</span>' +
         '</div>' +
-        '<div class="flight-bot"><span>Naha <b>→</b> Tokyo</span><span class="tbd">Haneda o Narita · da confermare</span></div>' +
+        '<div class="flight-bot"><span>Okinawa (Naha) <b>→</b> Tokyo Narita</span><span>2h 25m · Economy · Airbus A320 · Domestic Terminal → Narita</span></div>' +
       '</article>' +
 
       '<div class="flight-connection reveal"><b>Coincidenza a Dubai</b><span>4h 25m · 04:40 → 09:05</span></div>' +
@@ -100,12 +100,12 @@
 
     var nota = sezione.querySelector('.note.warn');
     if (nota) {
-      nota.innerHTML = '<b>Le tratte internazionali sono ora inserite.</b> Andata: MXP → Dubai → NRT il 28/29 ottobre. Ritorno: NRT → Dubai → MXP il 12/13 novembre. La coincidenza a Dubai è di 3h25 all\'andata e 4h25 al ritorno. I due voli interni FUK → OKA e OKA → Tokyo restano invece da completare.';
+      nota.innerHTML = '<b>Voli completati.</b> Andata: MXP → Dubai → NRT il 28/29 ottobre. Il 8 novembre FUK → OKA con ANA (NH2501). Il 12 novembre OKA → NRT con Jetstar Japan (GK338), poi NRT → Dubai → MXP. Le coincidenze a Dubai sono di 3h25 all\'andata e 4h25 al ritorno.';
     }
 
     var nota2 = sezione.querySelectorAll('.note')[1];
     if (nota2) {
-      nota2.innerHTML = '<b>Nota:</b> i dati riportati qui sono quelli delle prenotazioni fornite. Per la coincidenza a Dubai, verifica sul biglietto che le tratte siano effettivamente nella stessa prenotazione/PNR e segui sempre le indicazioni della compagnia per eventuale cambio di terminal o bagagli.';
+      nota2.innerHTML = '<b>Nota:</b> per i voli interni sono riportati i dati delle prenotazioni fornite. Per il GK338: partenza da Naha Airport Domestic Terminal alle 07:30 e arrivo a Narita alle 09:55. Verifica sempre eventuali aggiornamenti di orario direttamente con la compagnia.';
     }
   }
 
