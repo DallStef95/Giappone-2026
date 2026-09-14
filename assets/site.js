@@ -22,11 +22,13 @@
     voli.parentNode.insertBefore(sezione, voli);
     var input = sezione.querySelector('#yen-amount'), result = sezione.querySelector('#yen-result'), rate = sezione.querySelector('#yen-rate');
     function render(eurPerJpy, label) { var yen = parseFloat(input.value) || 0; result.textContent = new Intl.NumberFormat('it-IT', {style:'currency', currency:'EUR'}).format(yen * eurPerJpy); rate.textContent = label; }
-    function fallback() { render(1 / 178.335, 'Cambio di riferimento: 1 EUR ≈ 178,34 JPY. Il dato viene aggiornato dal web quando disponibile.'); }
-    input.addEventListener('input', function () { if (window.__eurPerJpy) render(window.__eurPerJpy, window.__eurLabel || ''); });
-    fetch('https://api.frankfurter.app/latest?from=EUR&to=JPY', {cache:'no-store'})
+    function fallback() { window.__eurPerJpy = 1 / 178.335; window.__eurLabel = 'Cambio di riferimento: 1 EUR ≈ 178,34 JPY. Il dato viene aggiornato dal web quando disponibile.'; render(window.__eurPerJpy, window.__eurLabel); }
+    function aggiornaDaInput() { if (window.__eurPerJpy) render(window.__eurPerJpy, window.__eurLabel || ''); }
+    input.addEventListener('input', aggiornaDaInput);
+    input.addEventListener('change', aggiornaDaInput);
+    fetch('https://api.frankfurter.dev/v2/rate/eur/jpy', {cache:'no-store'})
       .then(function (r) { if (!r.ok) throw new Error('Cambio non disponibile'); return r.json(); })
-      .then(function (data) { var jpy = Number(data && data.rates && data.rates.JPY); if (!jpy) throw new Error('Cambio non valido'); window.__eurPerJpy = 1 / jpy; window.__eurLabel = 'Cambio aggiornato: 1 EUR = ' + jpy.toFixed(2) + ' JPY · fonte ECB tramite Frankfurter · ' + (data.date || 'ultimo dato disponibile'); render(window.__eurPerJpy, window.__eurLabel); })
+      .then(function (data) { var jpy = Number(data && data.rate); if (!jpy) throw new Error('Cambio non valido'); window.__eurPerJpy = 1 / jpy; window.__eurLabel = 'Cambio aggiornato: 1 EUR = ' + jpy.toFixed(2) + ' JPY · fonte Frankfurter · ' + (data.date || 'ultimo dato disponibile'); render(window.__eurPerJpy, window.__eurLabel); })
       .catch(function () { fallback(); });
   }
 
