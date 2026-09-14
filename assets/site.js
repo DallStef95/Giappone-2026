@@ -14,19 +14,59 @@
     var nota = sezione.querySelector('.note.warn'); if (nota) nota.innerHTML = '<b>Voli completati.</b> Andata: MXP → Dubai → NRT il 28/29 ottobre. Il 8 novembre FUK → OKA con ANA (NH2501). Il 12 novembre OKA → NRT con Jetstar Japan (GK338), poi NRT → Dubai → MXP.';
   }
 
+  function cambioEuroYen() {
+    var voli = document.getElementById('voli'); if (!voli || document.getElementById('eur-yen')) return;
+    var sezione = document.createElement('section'); sezione.id = 'eur-yen';
+    sezione.innerHTML = '<div class="shead"><span class="idx">01</span><div><h2>EUR-YEN</h2><p>Convertitore rapido JPY → EUR con cambio aggiornato dal web.</p></div></div><div class="card reveal"><div style="display:flex;flex-wrap:wrap;gap:14px;align-items:end"><label style="display:flex;flex-direction:column;gap:7px;flex:1;min-width:220px"><span><b>Quantità in Yen</b></span><input id="yen-amount" type="number" inputmode="decimal" min="0" step="1" value="10000" style="font:inherit;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:inherit"></label><div style="flex:1;min-width:220px"><div style="font-size:.82rem;opacity:.7;margin-bottom:7px">Valore in Euro</div><div id="yen-result" style="font-size:1.6rem;font-weight:800">—</div></div></div><p id="yen-rate" class="note tip" style="margin-top:14px">Aggiornamento cambio in corso…</p></div>';
+    voli.parentNode.insertBefore(sezione, voli);
+    var input = sezione.querySelector('#yen-amount'), result = sezione.querySelector('#yen-result'), rate = sezione.querySelector('#yen-rate');
+    function render(eurPerJpy, label) { var yen = parseFloat(input.value) || 0; result.textContent = new Intl.NumberFormat('it-IT', {style:'currency', currency:'EUR'}).format(yen * eurPerJpy); rate.textContent = label; }
+    function fallback() { render(1 / 178.335, 'Cambio di riferimento: 1 EUR ≈ 178,34 JPY. Il dato viene aggiornato dal web quando disponibile.'); }
+    input.addEventListener('input', function () { if (window.__eurPerJpy) render(window.__eurPerJpy, window.__eurLabel || ''); });
+    fetch('https://api.frankfurter.app/latest?from=EUR&to=JPY', {cache:'no-store'})
+      .then(function (r) { if (!r.ok) throw new Error('Cambio non disponibile'); return r.json(); })
+      .then(function (data) { var jpy = Number(data && data.rates && data.rates.JPY); if (!jpy) throw new Error('Cambio non valido'); window.__eurPerJpy = 1 / jpy; window.__eurLabel = 'Cambio aggiornato: 1 EUR = ' + jpy.toFixed(2) + ' JPY · fonte ECB tramite Frankfurter · ' + (data.date || 'ultimo dato disponibile'); render(window.__eurPerJpy, window.__eurLabel); })
+      .catch(function () { fallback(); });
+  }
+
   function documentiViaggio() {
     var voli = document.getElementById('voli'); if (!voli || document.getElementById('documenti-viaggio')) return;
     var sezione = document.createElement('section'); sezione.id = 'documenti-viaggio';
-    sezione.innerHTML = '<div class="shead"><span class="idx">02</span><div><h2>Documenti di viaggio</h2><p>Documenti organizzati per viaggiatore.</p></div></div><div class="grid"><details class="card reveal" open><summary style="cursor:pointer;font-size:1.1rem;font-weight:700">📁 Anna</summary><div style="margin-top:14px"><p><b>Cartella documenti personali</b></p><p>Aggiungeremo qui passaporto, assicurazione, prenotazioni e altri documenti di Anna.</p><p class="note tip" style="margin-top:12px">Nessun documento caricato per il momento.</p></div></details><details class="card reveal"><summary style="cursor:pointer;font-size:1.1rem;font-weight:700">📁 Stefano</summary><div style="margin-top:14px"><p><b>Cartella documenti personali</b></p><p>Aggiungeremo qui passaporto, assicurazione, prenotazioni e altri documenti di Stefano.</p><p class="note tip" style="margin-top:12px">Nessun documento caricato per il momento.</p></div></details></div>';
+    sezione.innerHTML = '<div class="shead"><span class="idx">03</span><div><h2>Documenti di viaggio</h2><p>Documenti organizzati per viaggiatore.</p></div></div><div class="grid"><details class="card reveal" open><summary style="cursor:pointer;font-size:1.1rem;font-weight:700">📁 Anna</summary><div style="margin-top:14px"><p><b>Cartella documenti personali</b></p><p>Aggiungeremo qui passaporto, assicurazione, prenotazioni e altri documenti di Anna.</p><p class="note tip" style="margin-top:12px">Nessun documento caricato per il momento.</p></div></details><details class="card reveal" open><summary style="cursor:pointer;font-size:1.1rem;font-weight:700">📁 Stefano</summary><div style="margin-top:14px"><p><b>Cartella documenti personali</b></p><p>Aggiungeremo qui passaporto, assicurazione, prenotazioni e altri documenti di Stefano.</p><p class="note tip" style="margin-top:12px"><a href="https://www.vjw.digital.go.jp/main/#/vjwpic026" target="_blank" rel="noopener noreferrer"><b>QR Immigrazione</b></a></p></div></details></div>';
     voli.insertAdjacentElement('afterend', sezione);
     var itinerario = document.getElementById('itinerario');
-    if (itinerario) { var idx = itinerario.querySelector('.idx'); if (idx) idx.textContent = '03'; }
-    var sp = document.getElementById('spostamenti'); if (sp) { var i = sp.querySelector('.idx'); if (i) i.textContent = '04'; }
-    var pr = document.getElementById('pratico'); if (pr) { var j = pr.querySelector('.idx'); if (j) j.textContent = '05'; }
-    var ab = document.getElementById('abbigliamento'); if (ab) { var k = ab.querySelector('.idx'); if (k) k.textContent = '06'; }
-    var lu = document.getElementById('luce'); if (lu) { var l = lu.querySelector('.idx'); if (l) l.textContent = '07'; }
-    var ch = document.getElementById('checklist'); if (ch) { var m = ch.querySelector('.idx'); if (m) m.textContent = '08'; }
-    var ap = document.getElementById('appunti'); if (ap) { var n = ap.querySelector('.idx'); if (n) n.textContent = '09'; }
+    if (itinerario) { var idx = itinerario.querySelector('.idx'); if (idx) idx.textContent = '04'; }
+    var sp = document.getElementById('spostamenti'); if (sp) { var i = sp.querySelector('.idx'); if (i) i.textContent = '05'; }
+    var pr = document.getElementById('pratico'); if (pr) { var j = pr.querySelector('.idx'); if (j) j.textContent = '06'; }
+    var ab = document.getElementById('abbigliamento'); if (ab) { var k = ab.querySelector('.idx'); if (k) k.textContent = '07'; }
+    var lu = document.getElementById('luce'); if (lu) { var l = lu.querySelector('.idx'); if (l) l.textContent = '08'; }
+    var ch = document.getElementById('checklist'); if (ch) { var m = ch.querySelector('.idx'); if (m) m.textContent = '09'; }
+    var ap = document.getElementById('appunti'); if (ap) { var n = ap.querySelector('.idx'); if (n) n.textContent = '10'; }
+  }
+
+  function aggiornaOkinawaSenzaAuto() {
+    var giorni = document.querySelectorAll('#itinerario .day');
+    for (var i = 0; i < giorni.length; i++) {
+      var n = giorni[i].querySelector('.dnum'); if (!n) continue;
+      var giorno = n.textContent.trim();
+      if (giorno === '09' || giorno === '10') {
+        var note = giorni[i].querySelectorAll('.note.warn');
+        for (var j = 0; j < note.length; j++) note[j].remove();
+      }
+    }
+    var pratico = document.getElementById('pratico');
+    if (pratico) {
+      var testo = pratico.textContent || '';
+      if (testo.indexOf('Auto Okinawa') !== -1) {
+        var items = pratico.querySelectorAll('li');
+        for (var k = 0; k < items.length; k++) if (items[k].textContent.indexOf('Auto Okinawa') !== -1) items[k].remove();
+      }
+    }
+    var check = document.getElementById('checklist');
+    if (check) {
+      var checks = check.querySelectorAll('li');
+      for (var q = 0; q < checks.length; q++) if (checks[q].textContent.indexOf('Auto Okinawa') !== -1) checks[q].remove();
+    }
   }
 
   function compleannoAnna() { var giorno = document.querySelector('#itinerario .day:not(.air) .dnum'); if (!giorno || giorno.textContent.trim() !== '29') return; var body = giorno.closest('.day-body'); if (!body || body.querySelector('.birthday-plan')) return; }
@@ -34,5 +74,5 @@
   function comparsa() { var v=document.querySelectorAll('.reveal'), r=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches; if(!v.length)return; if(r||!('IntersectionObserver'in window)){for(var i=0;i<v.length;i++)v[i].classList.add('in');return;} var o=new IntersectionObserver(function(rs){rs.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');o.unobserve(x.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.05}); for(var j=0;j<v.length;j++)o.observe(v[j]); }
   function checklist() { var cs=document.querySelectorAll('.check input[data-k]'); for(var i=0;i<cs.length;i++)(function(c){var k=CHIAVE+'check:'+c.dataset.k;if(!box)return;if(box.getItem(k)==='1')c.checked=true;c.addEventListener('change',function(){if(c.checked)box.setItem(k,'1');else box.removeItem(k);});})(cs[i]); }
   function appunti() { var as=document.querySelectorAll('textarea[data-nota]'); for(var i=0;i<as.length;i++)(function(a){var id=a.dataset.nota,k=CHIAVE+'nota:'+id,s=document.querySelector('[data-nota-stato="'+id+'"]'),c=document.querySelector('[data-nota-cancella="'+id+'"]');if(!box){a.disabled=true;return;}var v=box.getItem(k);if(v)a.value=v;var t;a.addEventListener('input',function(){clearTimeout(t);t=setTimeout(function(){if(a.value)box.setItem(k,a.value);else box.removeItem(k);if(s)s.textContent='Salvato su questo dispositivo';},400);});if(c)c.addEventListener('click',function(){a.value='';box.removeItem(k);if(s)s.textContent='Cancellato';});})(as[i]); }
-  voliConfermati(); documentiViaggio(); contatore(); compleannoAnna(); comparsa(); checklist(); appunti();
+  cambioEuroYen(); voliConfermati(); documentiViaggio(); aggiornaOkinawaSenzaAuto(); contatore(); compleannoAnna(); comparsa(); checklist(); appunti();
 })();
