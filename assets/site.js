@@ -30,7 +30,7 @@
   function documentiViaggio() {
     var voli = document.getElementById('voli'); if (!voli || document.getElementById('documenti-viaggio')) return;
     var sezione = document.createElement('section'); sezione.id = 'documenti-viaggio';
-    sezione.innerHTML = '<div class="shead"><span class="idx">03</span><div><h2>Documenti di viaggio</h2><p>Documenti organizzati per viaggiatore.</p></div></div><div class="grid"><details class="card reveal" open><summary style="cursor:pointer;font-size:1.1rem;font-weight:700">📁 Anna</summary><div style="margin-top:14px"><p><b>Cartella documenti personali</b></p><p>Aggiungeremo qui passaporto, assicurazione, prenotazioni e altri documenti di Anna.</p><p class="note tip" style="margin-top:12px">Nessun documento caricato per il momento.</p></div></details><details class="card reveal" open><summary style="cursor:pointer;font-size:1.1rem;font-weight:700">📁 Stefano</summary><div style="margin-top:14px"><p><b>Cartella documenti personali</b></p><p>Aggiungeremo qui passaporto, assicurazione, prenotazioni e altri documenti di Stefano.</p><p class="note tip" style="margin-top:12px"><a href="https://www.vjw.digital.go.jp/main/#/vjwpic026" target="_blank" rel="noopener noreferrer"><b>QR Immigrazione</b></a></p></div></details></div>';
+    sezione.innerHTML = '<div class="shead"><span class="idx">03</span><div><h2>Documenti di viaggio</h2><p>Documenti organizzati per viaggiatore.</p></div></div><div class="grid"><details class="card reveal" open><summary style="cursor:pointer;font-size:1.1rem;font-weight:700">📁 Anna</summary><div style="margin-top:14px"><p><b>Cartella documenti personali</b></p><p>Aggiungeremo qui passaporto, assicurazione, prenotazioni e altri documenti di Anna.</p><p class="note tip" style="margin-top:12px">Nessun documento caricato per il momento.</p></div></details><details class="card reveal" open><summary style="cursor:pointer;font-size:1.1rem;font-weight:700">📁 Stefano</summary><div style="margin-top:14px"><p><b>Cartella documenti personali</b></p><p>Aggiungeremo qui passaporto, assicurazione, prenotazioni e altri documenti di Stefano.</p><div style="margin-top:12px;display:flex;flex-direction:column;gap:10px"><p class="note tip" style="margin:0"><a href="https://www.vjw.digital.go.jp/main/#/vjwpic026" target="_blank" rel="noopener noreferrer"><b>QR Immigrazione</b></a></p><p class="note tip" style="margin:0"><a href="documenti/Stefano/parcheggio/Prenotazione_13564112.html"><b>📁 Parcheggio</b></a></p></div></div></details></div>';
     voli.insertAdjacentElement('afterend', sezione);
     var itinerario = document.getElementById('itinerario'); if (itinerario) { var idx = itinerario.querySelector('.idx'); if (idx) idx.textContent = '04'; }
     var sp = document.getElementById('spostamenti'); if (sp) { var i = sp.querySelector('.idx'); if (i) i.textContent = '05'; }
@@ -46,32 +46,12 @@
     for (var i = 0; i < giorni.length; i++) {
       var n = giorni[i].querySelector('.dnum'); if (!n) continue;
       if (n.textContent.trim() === '29') {
-        var items = giorni[i].querySelectorAll('li');
-        for (var j = 0; j < items.length; j++) {
-          if (items[j].textContent.indexOf('1-chōme-16-2 Kotoburi') !== -1 || items[j].textContent.indexOf('1-chōme-16-2 Kotoburi') !== -1) continue;
-          if (items[j].textContent.indexOf('1-chōme-16-2 Kotoburi') === -1 && items[j].textContent.indexOf('1-chōme-16-2 Kotoburi') === -1 && items[j].textContent.indexOf('1-chōme-16-2 Kotoburi') === -1 && items[j].textContent.indexOf('1-chōme-16-2 Kotoburi') === -1) {
-            if (items[j].textContent.indexOf('1-chōme-16-2 Kotoburi') !== -1) continue;
-          }
-        }
         var body = giorni[i].querySelector('.day-body');
         if (body) {
-          var walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT);
-          var nodes = [], node;
-          while ((node = walker.nextNode())) nodes.push(node);
-          for (var q = 0; q < nodes.length; q++) {
-            if (nodes[q].nodeValue.indexOf('1-chōme-16-2 Kotoburi') !== -1) {
-              nodes[q].nodeValue = nodes[q].nodeValue.replace('1-chōme-16-2 Kotoburi', '1-chōme-16-2 Kotoburi');
-            }
-          }
-          var address = '1-chōme-16-2 Kotoburi';
-          var address2 = '1-chōme-16-2 Kotoburi';
           var html = body.innerHTML;
-          var target = '1-chōme-16-2 Kotoburi';
-          if (html.indexOf(target) !== -1) body.innerHTML = html.replace(target, '<a href="https://www.google.com/maps/search/?api=1&query=1-ch%C5%8Dme-16-2%20Kotoburi%2C%20Taito%20City%2C%20Tokyo%20111-0042%2C%20Japan" target="_blank" rel="noopener noreferrer"><b>' + target + '</b></a>');
-          else {
-            target = '1-chōme-16-2 Kotoburi, Taito City, Tokyo 111-0042';
-            if (html.indexOf(target) !== -1) body.innerHTML = html.replace(target, '<a href="https://www.google.com/maps/search/?api=1&query=1-ch%C5%8Dme-16-2%20Kotoburi%2C%20Taito%20City%2C%20Tokyo%20111-0042%2C%20Japan" target="_blank" rel="noopener noreferrer"><b>' + target + '</b></a>');
-          }
+          var target = '1-chōme-16-2 Kotoburi, Taito City, Tokyo 111-0042';
+          var link = '<a href="https://www.google.com/maps/search/?api=1&query=1-ch%C5%8Dme-16-2%20Kotoburi%2C%20Taito%20City%2C%20Tokyo%20111-0042%2C%20Japan" target="_blank" rel="noopener noreferrer"><b>' + target + '</b></a>';
+          if (html.indexOf(target) !== -1 && html.indexOf('google.com/maps/search/?api=1&query=1-ch%C5%8Dme-16-2') === -1) body.innerHTML = html.replace(target, link);
         }
       }
       if (n.textContent.trim() === '31') {
