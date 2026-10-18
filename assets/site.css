@@ -319,3 +319,24 @@ footer{
   #itinerario .day-mark{padding-right:.65rem}
   #itinerario .day-mark .dnum{font-size:1.45rem}
 }
+
+
+/* ---------- menu selezionabile per ogni giornata ---------- */
+#itinerario .days{display:grid;grid-template-columns:1fr;gap:.65rem}
+#itinerario .day-menu{min-width:0;margin:0;padding:0;background:linear-gradient(145deg,rgba(30,40,51,.92),rgba(21,28,37,.92));border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+#itinerario .day-menu-summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:3.2rem minmax(0,1fr) 1.2rem;align-items:center;gap:.9rem;padding:1rem 1.1rem}
+#itinerario .day-menu-summary::-webkit-details-marker{display:none}
+#itinerario .day-menu-summary::after{content:"+";font-size:1.35rem;color:var(--kin);text-align:center;font-family:"JetBrains Mono",monospace}
+#itinerario .day-menu[open] .day-menu-summary::after{content:"−"}
+#itinerario .day-menu-summary .day-mark{padding:0;text-align:center}
+#itinerario .day-menu-summary .day-mark::before,#itinerario .day-menu-summary .day-mark::after{display:none}
+#itinerario .day-menu-summary .day-mark .dnum{font-size:1.65rem}
+#itinerario .day-menu-summary .day-head{margin:0;min-width:0;align-items:center}
+#itinerario .day-menu-summary .day-head h3{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(1.25rem,3.8vw,1.7rem);line-height:1.15;margin:0}
+#itinerario .day-menu-summary .tag{font-size:.58rem}
+#itinerario .day-content{padding:0 1.1rem 1.15rem 5.2rem;border-top:1px solid var(--rule)}
+#itinerario .day-content ul{margin:.8rem 0 0;padding-left:1rem}
+#itinerario .day-content li{margin:.35rem 0}
+#itinerario .day-content .note{font-size:.86rem}
+@media(min-width:46rem){#itinerario .days{grid-template-columns:1fr}#itinerario .day-menu-summary{padding:1rem 1.25rem;grid-template-columns:3.4rem minmax(0,1fr) 1.4rem}#itinerario .day-content{padding-left:5.7rem}}
+@media(max-width:30rem){#itinerario .day-menu-summary{grid-template-columns:2.7rem minmax(0,1fr) 1rem;gap:.65rem;padding:.85rem}#itinerario .day-menu-summary .day-mark .dnum{font-size:1.4rem}#itinerario .day-menu-summary .day-head h3{font-size:1.25rem}#itinerario .day-content{padding:0 .85rem .95rem 4.2rem}}
