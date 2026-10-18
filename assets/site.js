@@ -103,10 +103,46 @@
     });
   }
 
+
+  function mappaGiornaliera() {
+    var frame = document.getElementById('mappa-giornaliera');
+    var titolo = document.getElementById('mappa-tappa');
+    var sottotitolo = document.getElementById('mappa-sottotitolo');
+    if (!frame || !titolo) return;
+    var oggi;
+    try {
+      var parti = new Intl.DateTimeFormat('en-CA', {timeZone:'Asia/Tokyo', year:'numeric', month:'2-digit', day:'2-digit'}).formatToParts(new Date());
+      var valori = {}; parti.forEach(function(p){ if(p.type !== 'literal') valori[p.type] = p.value; });
+      oggi = valori.year + '-' + valori.month + '-' + valori.day;
+    } catch(e) {
+      var d = new Date(); oggi = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    }
+    var tappe = [
+      {inizio:'2026-10-28',fine:'2026-10-28',nome:'Trasferimento: Milano → Dubai',luogo:'Dubai International Airport'},
+      {inizio:'2026-10-29',fine:'2026-10-31',nome:'Tokyo',luogo:'Asakusa, Tokyo, Japan'},
+      {inizio:'2026-11-01',fine:'2026-11-03',nome:'Kyoto',luogo:'Kyoto, Japan'},
+      {inizio:'2026-11-04',fine:'2026-11-04',nome:'Gita a Osaka',luogo:'Dotonbori, Osaka, Japan'},
+      {inizio:'2026-11-05',fine:'2026-11-05',nome:'Hiroshima e Miyajima → Hakata',luogo:'Hakata Station, Fukuoka, Japan'},
+      {inizio:'2026-11-06',fine:'2026-11-06',nome:'Fukuoka',luogo:'Nakasu, Fukuoka, Japan'},
+      {inizio:'2026-11-07',fine:'2026-11-07',nome:'Gita a Beppu',luogo:'Beppu Station, Beppu, Japan'},
+      {inizio:'2026-11-08',fine:'2026-11-08',nome:'Arrivo a Naha · Okinawa',luogo:'Comfort Hotel Naha Prefectural Office, Naha, Okinawa, Japan'},
+      {inizio:'2026-11-09',fine:'2026-11-09',nome:'Okinawa · nord',luogo:'Churaumi Aquarium, Okinawa, Japan'},
+      {inizio:'2026-11-10',fine:'2026-11-10',nome:'Okinawa · sud',luogo:'Okinawa Peace Memorial Park, Itoman, Okinawa, Japan'},
+      {inizio:'2026-11-11',fine:'2026-11-11',nome:'Okinawa · giornata libera',luogo:'Naha, Okinawa, Japan'},
+      {inizio:'2026-11-12',fine:'2026-11-12',nome:'Tokyo · Narita',luogo:'Narita International Airport, Japan'},
+      {inizio:'2026-11-13',fine:'2026-11-13',nome:'Rientro a Milano',luogo:'Milan Malpensa Airport, Italy'}
+    ];
+    var t = tappe.find(function(x){return oggi >= x.inizio && oggi <= x.fine;});
+    if (!t) t = oggi < '2026-10-28' ? {nome:'Prossima tappa: Tokyo',luogo:'Asakusa, Tokyo, Japan'} : {nome:'Viaggio concluso · Milano',luogo:'Milan Malpensa Airport, Italy'};
+    titolo.textContent = 'Tappa del giorno: ' + t.nome;
+    if (sottotitolo) sottotitolo.textContent = 'Mappa Google Maps aggiornata automaticamente secondo la data in Giappone (' + oggi.split('-').reverse().join('/') + ').';
+    frame.src = 'https://maps.google.com/maps?q=' + encodeURIComponent(t.luogo) + '&output=embed';
+  }
+
   function contatore() { var el=document.getElementById('counter'); if(!el)return; var oggi=new Date(); oggi=new Date(oggi.getFullYear(),oggi.getMonth(),oggi.getDate()); var g=86400000, alVia=Math.round((PARTENZA-oggi)/g), alRientro=Math.round((RIENTRO-oggi)/g); if(alVia>0) el.innerHTML='Mancano <b>'+alVia+'</b> giorn'+(alVia===1?'o':'i')+' alla partenza'; else if(alRientro>=0){var n=Math.round((oggi-PARTENZA)/g)+1;el.innerHTML='Giorno <b>'+n+'</b> di 17 &middot; in viaggio';}else el.textContent='Viaggio concluso'; }
   function comparsa() { var v=document.querySelectorAll('.reveal'), r=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches; if(!v.length)return; if(r||!('IntersectionObserver'in window)){for(var i=0;i<v.length;i++)v[i].classList.add('in');return;} var o=new IntersectionObserver(function(rs){rs.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');o.unobserve(x.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.05}); for(var j=0;j<v.length;j++)o.observe(v[j]); }
   function checklist() { var cs=document.querySelectorAll('.check input[data-k]'); for(var i=0;i<cs.length;i++)(function(c){var k=CHIAVE+'check:'+c.dataset.k;if(!box)return;if(box.getItem(k)==='1')c.checked=true;c.addEventListener('change',function(){if(c.checked)box.setItem(k,'1');else box.removeItem(k);});})(cs[i]); }
   function appunti() { var as=document.querySelectorAll('textarea[data-nota]'); for(var i=0;i<as.length;i++)(function(a){var id=a.dataset.nota,k=CHIAVE+'nota:'+id,s=document.querySelector('[data-nota-stato="'+id+'"]'),c=document.querySelector('[data-nota-cancella="'+id+'"]');if(!box){a.disabled=true;return;}var v=box.getItem(k);if(v)a.value=v;var t;a.addEventListener('input',function(){clearTimeout(t);t=setTimeout(function(){if(a.value)box.setItem(k,a.value);else box.removeItem(k);if(s)s.textContent='Salvato su questo dispositivo';},400);});if(c)c.addEventListener('click',function(){a.value='';box.removeItem(k);if(s)s.textContent='Cancellato';});})(as[i]); }
 
-  cambioEuroYen(); voliConfermati(); documentiViaggio(); linkPrenotazioni(); aggiornaOkinawaSenzaAuto(); menuGiorni(); contatore(); comparsa(); checklist(); appunti();
+  cambioEuroYen(); voliConfermati(); documentiViaggio(); linkPrenotazioni(); aggiornaOkinawaSenzaAuto(); menuGiorni(); mappaGiornaliera(); contatore(); comparsa(); checklist(); appunti();
 })();
