@@ -124,7 +124,7 @@
       {inizio:'2026-11-04',fine:'2026-11-04',nome:'Gita a Osaka',luogo:'Dotonbori, Osaka, Japan'},
       {inizio:'2026-11-05',fine:'2026-11-05',nome:'Hiroshima e Miyajima → Hakata',luogo:'Hakata Station, Fukuoka, Japan'},
       {inizio:'2026-11-06',fine:'2026-11-06',nome:'Fukuoka',luogo:'Nakasu, Fukuoka, Japan'},
-      {inizio:'2026-11-07',fine:'2026-11-07',nome:'Gita a Beppu',luogo:'Beppu Station, Beppu, Japan'},
+      {inizio:'2026-11-07',fine:'2026-11-07',nome:'Gita a Itoshima',luogo:'Sakurai Futamigaura, Itoshima, Fukuoka, Japan'},
       {inizio:'2026-11-08',fine:'2026-11-08',nome:'Arrivo a Naha · Okinawa',luogo:'Comfort Hotel Naha Prefectural Office, Naha, Okinawa, Japan'},
       {inizio:'2026-11-09',fine:'2026-11-09',nome:'Okinawa · nord',luogo:'Churaumi Aquarium, Okinawa, Japan'},
       {inizio:'2026-11-10',fine:'2026-11-10',nome:'Okinawa · sud',luogo:'Okinawa Peace Memorial Park, Itoman, Okinawa, Japan'},
