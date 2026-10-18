@@ -49,9 +49,9 @@
         var body = giorni[i].querySelector('.day-body');
         if (body) {
           var html = body.innerHTML;
-          var target = '1-chōme-16-2 Kotoburi, Taito City, Tokyo 111-0042';
-          var link = '<a href="https://www.google.com/maps/search/?api=1&query=1-ch%C5%8Dme-16-2%20Kotoburi%2C%20Taito%20City%2C%20Tokyo%20111-0042%2C%20Japan" target="_blank" rel="noopener noreferrer"><b>' + target + '</b></a>';
-          if (html.indexOf(target) !== -1 && html.indexOf('google.com/maps/search/?api=1&query=1-ch%C5%8Dme-16-2') === -1) body.innerHTML = html.replace(target, link);
+          var target = '1-chōme-16-2 Kotobuki, Taito City, Tokyo 111-0042';
+          var link = '<a href="https://maps.app.goo.gl/vxAHFaiLtZaZGuXB6?g_st=iw" target="_blank" rel="noopener noreferrer"><b>' + target + '</b></a>';
+          if (html.indexOf(target) !== -1 && html.indexOf('maps.app.goo.gl/vxAHFaiLtZaZGuXB6') === -1 && html.indexOf('google.com/maps/search/?api=1&query=1-ch%C5%8Dme-16-2') === -1) body.innerHTML = html.replace(target, link);
         }
       }
       if (n.textContent.trim() === '31') {
