@@ -344,7 +344,10 @@ footer{
 
 /* ---------- mappa del viaggio e shopping ---------- */
 .map-frame{position:relative;width:100%;height:clamp(280px,52vw,440px);overflow:hidden;border:1px solid var(--rule-kin);border-radius:12px;background:var(--sumi-2)}
-.map-frame iframe{display:block;width:100%;height:100%;border:0}\n.map-frame.illustrated-map{height:clamp(300px,62vw,570px);min-height:300px}\n.map-frame.illustrated-map svg{display:block;width:100%;height:100%;min-height:300px}
+.map-frame iframe{display:block;width:100%;height:100%;border:0}
+.map-frame.illustrated-map{height:clamp(340px,68vw,600px);min-height:340px;background:#142b3d}
+.map-frame.illustrated-map svg{display:block;width:100%;height:100%;min-height:340px}
+@media(max-width:520px){.map-frame.illustrated-map{height:500px}.map-frame.illustrated-map svg{min-height:500px}}
 .map-pins{margin-top:1rem;padding:1rem 1.1rem;background:var(--sumi-2);border:1px solid var(--rule);border-radius:10px;display:grid;gap:.7rem}
 .map-pins>b{font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--kin)}
 .map-pin-links{display:flex;flex-wrap:wrap;gap:.5rem}
@@ -355,5 +358,6 @@ footer{
 .shop-suggestions a{white-space:nowrap}
 
 /* ---------- Japanese culture ambient background ---------- */
-.japan-pattern{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.105;overflow:hidden}
-@media(max-width:700px){.japan-pattern{opacity:.075}}
+.japan-pattern{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.22;overflow:hidden;filter:saturate(1.35) drop-shadow(0 0 12px rgba(103,215,192,.08))}
+.japan-pattern text{opacity:.9}
+@media(max-width:700px){.japan-pattern{opacity:.14}}
