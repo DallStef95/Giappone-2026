@@ -74,10 +74,39 @@
     var check = document.getElementById('checklist'); if (check) { var checks = check.querySelectorAll('li'); for (var q = 0; q < checks.length; q++) if (checks[q].textContent.indexOf('Auto Okinawa') !== -1) checks[q].remove(); }
   }
 
+  function menuGiorni() {
+    var contenitore = document.querySelector('#itinerario .days');
+    if (!contenitore || contenitore.dataset.menuGiorni === '1') return;
+    contenitore.dataset.menuGiorni = '1';
+    var articoli = Array.prototype.slice.call(contenitore.querySelectorAll(':scope > article.day'));
+    articoli.forEach(function (articolo) {
+      var details = document.createElement('details');
+      details.className = 'day-menu reveal' + (articolo.classList.contains('air') ? ' air' : '');
+      var summary = document.createElement('summary');
+      summary.className = 'day-menu-summary';
+      var mark = articolo.querySelector('.day-mark');
+      var body = articolo.querySelector('.day-body');
+      var head = body && body.querySelector('.day-head');
+      if (mark) summary.appendChild(mark);
+      if (head) summary.appendChild(head);
+      var content = document.createElement('div');
+      content.className = 'day-content';
+      if (body) while (body.firstChild) content.appendChild(body.firstChild);
+      details.appendChild(summary);
+      details.appendChild(content);
+      details.addEventListener('toggle', function () {
+        if (!details.open) return;
+        var altri = contenitore.querySelectorAll('.day-menu[open]');
+        for (var j = 0; j < altri.length; j++) if (altri[j] !== details) altri[j].open = false;
+      });
+      articolo.parentNode.replaceChild(details, articolo);
+    });
+  }
+
   function contatore() { var el=document.getElementById('counter'); if(!el)return; var oggi=new Date(); oggi=new Date(oggi.getFullYear(),oggi.getMonth(),oggi.getDate()); var g=86400000, alVia=Math.round((PARTENZA-oggi)/g), alRientro=Math.round((RIENTRO-oggi)/g); if(alVia>0) el.innerHTML='Mancano <b>'+alVia+'</b> giorn'+(alVia===1?'o':'i')+' alla partenza'; else if(alRientro>=0){var n=Math.round((oggi-PARTENZA)/g)+1;el.innerHTML='Giorno <b>'+n+'</b> di 17 &middot; in viaggio';}else el.textContent='Viaggio concluso'; }
   function comparsa() { var v=document.querySelectorAll('.reveal'), r=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches; if(!v.length)return; if(r||!('IntersectionObserver'in window)){for(var i=0;i<v.length;i++)v[i].classList.add('in');return;} var o=new IntersectionObserver(function(rs){rs.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');o.unobserve(x.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.05}); for(var j=0;j<v.length;j++)o.observe(v[j]); }
   function checklist() { var cs=document.querySelectorAll('.check input[data-k]'); for(var i=0;i<cs.length;i++)(function(c){var k=CHIAVE+'check:'+c.dataset.k;if(!box)return;if(box.getItem(k)==='1')c.checked=true;c.addEventListener('change',function(){if(c.checked)box.setItem(k,'1');else box.removeItem(k);});})(cs[i]); }
   function appunti() { var as=document.querySelectorAll('textarea[data-nota]'); for(var i=0;i<as.length;i++)(function(a){var id=a.dataset.nota,k=CHIAVE+'nota:'+id,s=document.querySelector('[data-nota-stato="'+id+'"]'),c=document.querySelector('[data-nota-cancella="'+id+'"]');if(!box){a.disabled=true;return;}var v=box.getItem(k);if(v)a.value=v;var t;a.addEventListener('input',function(){clearTimeout(t);t=setTimeout(function(){if(a.value)box.setItem(k,a.value);else box.removeItem(k);if(s)s.textContent='Salvato su questo dispositivo';},400);});if(c)c.addEventListener('click',function(){a.value='';box.removeItem(k);if(s)s.textContent='Cancellato';});})(as[i]); }
 
-  cambioEuroYen(); voliConfermati(); documentiViaggio(); linkPrenotazioni(); aggiornaOkinawaSenzaAuto(); contatore(); comparsa(); checklist(); appunti();
+  cambioEuroYen(); voliConfermati(); documentiViaggio(); linkPrenotazioni(); aggiornaOkinawaSenzaAuto(); menuGiorni(); contatore(); comparsa(); checklist(); appunti();
 })();
