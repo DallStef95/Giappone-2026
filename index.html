@@ -29,46 +29,66 @@
 <section id="mappa-viaggio">
 <div class="shead"><span class="idx">01</span><div><h2>La rotta in Giappone</h2><p>Una mappa illustrata con le tappe principali, da Tokyo fino a Okinawa.</p></div></div>
 <div class="map-frame illustrated-map" role="img" aria-label="Mappa stilizzata del percorso in Giappone con Tokyo, Kyoto, Nara, Osaka, Hiroshima, Miyajima, Fukuoka, Itoshima e Okinawa evidenziate">
-<svg viewBox="0 0 800 570" width="100%" height="100%" style="display:block;width:100%;height:100%;min-height:280px" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-labelledby="map-title map-desc">
-<title id="map-title">Il nostro itinerario in Giappone</title><desc id="map-desc">Percorso schematico da Tokyo verso Kyoto, Osaka, Hiroshima, Miyajima e Fukuoka, con gita a Itoshima e volo per Okinawa prima del rientro a Tokyo Narita.</desc>
-<defs><linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#172736"/><stop offset="1" stop-color="#101820"/></linearGradient><linearGradient id="island" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#294b50"/><stop offset="1" stop-color="#1b343b"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-<rect width="800" height="570" rx="12" fill="url(#sea)"/>
-<g fill="none" stroke="#527180" stroke-width="1" opacity=".25"><path d="M0 95H800M0 190H800M0 285H800M0 380H800M0 475H800M100 0V570M200 0V570M300 0V570M400 0V570M500 0V570M600 0V570M700 0V570"/></g>
-<text x="28" y="38" fill="#86abdf" font-size="12" letter-spacing="4" font-family="sans-serif">JAPAN · OUR ROUTE</text>
-<text x="28" y="58" fill="#a2adb8" font-size="10" letter-spacing="2" font-family="sans-serif">28 OCT — 13 NOV 2026</text>
-<!-- silhouette of the Japanese archipelago -->
-<g fill="url(#island)" stroke="#71928c" stroke-width="1.5" opacity=".95">
-<path d="M579 42 Q603 26 624 42 L645 61 640 81 619 90 598 78 583 62Z"/>
-<path d="M545 100 Q559 84 577 93 L592 111 579 129 558 128 543 115Z"/>
-<path d="M513 141 Q533 125 550 143 L555 163 541 183 522 175 510 158Z"/>
-<path d="M488 184 Q504 166 520 183 L523 208 507 227 491 216 483 198Z"/>
-<path d="M462 224 Q479 208 493 225 L494 249 478 268 462 255 456 238Z"/>
-<path d="M425 269 Q445 250 462 270 L461 294 442 313 425 302 418 284Z"/>
-<path d="M385 308 Q405 288 424 306 L424 333 406 350 387 341 378 324Z"/>
-<path d="M346 342 Q366 324 386 341 L389 365 371 384 352 374 341 357Z"/>
-<path d="M302 370 Q322 354 342 372 L341 397 322 414 304 403 296 386Z"/>
-<path d="M261 398 Q280 383 299 399 L298 423 279 439 261 429 253 411Z"/>
-<path d="M222 426 Q241 410 258 426 L258 448 241 463 224 454 216 440Z"/>
-<path d="M181 454 Q198 440 214 455 L213 474 198 487 182 478 175 465Z"/>
-<path d="M145 483 Q160 469 176 483 L175 501 159 513 145 504 139 493Z"/>
-<path d="M105 512 Q121 499 136 513 L133 530 118 541 104 533 99 522Z"/>
-<path d="M72 535 Q84 525 96 536 L94 549 81 556 70 549Z"/>
+<svg viewBox="0 0 800 560" width="100%" height="100%" style="display:block;width:100%;height:100%;min-height:320px" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-labelledby="map-title map-desc">
+<title id="map-title">Il nostro itinerario in Giappone</title><desc id="map-desc">Mappa illustrata dell'arcipelago giapponese con pin per Tokyo, Kyoto, Nara, Osaka, Hiroshima, Miyajima, Fukuoka, Itoshima, Okinawa e Narita.</desc>
+<defs>
+ <linearGradient id="mapSea" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#142b3d"/><stop offset="1" stop-color="#101923"/></linearGradient>
+ <linearGradient id="mapLand" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3b7770"/><stop offset="1" stop-color="#244d52"/></linearGradient>
+ <filter id="pinGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="800" height="560" rx="14" fill="url(#mapSea)"/>
+<g fill="none" stroke="#7193a4" stroke-width="1" opacity=".13"><path d="M0 80H800M0 160H800M0 240H800M0 320H800M0 400H800M0 480H800M80 0V560M160 0V560M240 0V560M320 0V560M400 0V560M480 0V560M560 0V560M640 0V560M720 0V560"/></g>
+<text x="30" y="38" fill="#f3c96b" font-family="sans-serif" font-size="13" font-weight="700" letter-spacing="3">JAPAN ADVENTURE · 2026</text>
+<text x="30" y="59" fill="#a9c2d1" font-family="sans-serif" font-size="11" letter-spacing="1.5">28 OCTOBER — 13 NOVEMBER</text>
+<!-- Sagome semplificate ma riconoscibili delle quattro isole principali -->
+<g fill="url(#mapLand)" stroke="#80b7a5" stroke-width="2" stroke-linejoin="round">
+ <!-- Hokkaido -->
+ <path d="M570 74 Q588 57 609 65 L635 82 647 103 636 125 614 137 596 126 582 111 565 101Z"/>
+ <!-- Honshu: lungo arco nord-est / sud-ovest -->
+ <path d="M572 139 Q590 128 602 145 L599 163 582 177 566 194 554 214 539 228 523 247 510 265 491 281 474 300 456 317 439 336 421 351 400 362 381 359 372 346 384 332 399 318 415 303 430 287 447 270 461 252 477 235 492 215 507 197 520 178 535 161 552 148Z"/>
+ <!-- Shikoku -->
+ <path d="M350 368 Q365 358 382 366 L392 378 384 391 365 396 349 388 341 378Z"/>
+ <!-- Kyushu -->
+ <path d="M320 376 Q337 365 349 379 L351 397 342 416 330 432 315 441 300 433 294 416 301 399Z"/>
+ <!-- Okinawa / Ryukyu chain -->
+ <path d="M283 450 Q292 445 298 453 L295 462 287 465Z"/>
+ <path d="M258 473 Q266 468 271 476 L267 484 260 483Z"/>
+ <path d="M230 493 Q238 488 243 495 L240 503 233 502Z"/>
+ <path d="M200 512 Q209 506 215 514 L210 522 203 521Z"/>
+ <path d="M165 528 Q176 521 182 530 L177 539 168 538Z"/>
 </g>
-<!-- route: land itinerary and flights -->
-<path d="M598 106 L509 207 L478 244 L443 286 L408 326 L369 359 L323 390 L278 416 L235 443 L194 468" fill="none" stroke="#cfa646" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M194 468 Q152 488 111 524" fill="none" stroke="#e0705a" stroke-width="2.5" stroke-dasharray="6 6"/>
-<path d="M111 524 Q360 548 700 80" fill="none" stroke="#e0705a" stroke-width="2.5" stroke-dasharray="6 7" opacity=".9"/>
-<path d="M700 80 Q653 89 598 106" fill="none" stroke="#86abdf" stroke-width="2" stroke-dasharray="3 6"/>
-<!-- highlighted stops -->
-<g filter="url(#glow)" fill="#e9e3d7" stroke="#cfa646" stroke-width="3">
-<circle cx="598" cy="106" r="6"/><circle cx="509" cy="207" r="5"/><circle cx="478" cy="244" r="5"/><circle cx="443" cy="286" r="5"/><circle cx="408" cy="326" r="5"/><circle cx="369" cy="359" r="5"/><circle cx="323" cy="390" r="5"/><circle cx="278" cy="416" r="5"/><circle cx="235" cy="443" r="5"/><circle cx="194" cy="468" r="5"/><circle cx="111" cy="524" r="6"/><circle cx="700" cy="80" r="6"/>
+<!-- Rotta terrestre principale, tenuta sottile per non confondere la cartografia -->
+<path d="M584 151 Q540 205 500 265 T423 345" fill="none" stroke="#f3c96b" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 6" opacity=".9"/>
+<path d="M423 345 Q380 366 329 405" fill="none" stroke="#f3c96b" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 6" opacity=".9"/>
+<path d="M329 405 Q250 455 174 532" fill="none" stroke="#f18a78" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="5 7"/>
+<path d="M174 532 Q430 555 695 105" fill="none" stroke="#f18a78" stroke-width="2.5" stroke-dasharray="6 8" opacity=".9"/>
+<!-- Pin -->
+<g font-family="sans-serif" font-size="11" font-weight="700" text-anchor="middle" filter="url(#pinGlow)">
+ <g transform="translate(584 151)"><path d="M0 13C-4 7 -12 -1 -12 -8A12 12 0 1 1 12 -8C12 -1 4 7 0 13Z" fill="#ff7f73" stroke="#ffe3ce" stroke-width="1.5"/><circle cy="-8" r="4" fill="#17232e"/><text x="0" y="-4" fill="#fff">1</text></g>
+ <g transform="translate(500 265)"><path d="M0 12C-4 6 -11 0 -11 -7A11 11 0 1 1 11 -7C11 0 4 6 0 12Z" fill="#f3c96b" stroke="#fff0bc" stroke-width="1.5"/><circle cy="-7" r="3.5" fill="#17232e"/><text x="0" y="-3.5" fill="#fff">2</text></g>
+ <g transform="translate(488 279)"><path d="M0 10C-3 5 -9 0 -9 -6A9 9 0 1 1 9 -6C9 0 3 5 0 10Z" fill="#f3c96b" stroke="#fff0bc" stroke-width="1.2"/><circle cy="-6" r="3" fill="#17232e"/><text x="0" y="-3" fill="#fff" font-size="9">3</text></g>
+ <g transform="translate(478 294)"><path d="M0 10C-3 5 -9 0 -9 -6A9 9 0 1 1 9 -6C9 0 3 5 0 10Z" fill="#f3c96b" stroke="#fff0bc" stroke-width="1.2"/><circle cy="-6" r="3" fill="#17232e"/><text x="0" y="-3" fill="#fff" font-size="9">4</text></g>
+ <g transform="translate(423 345)"><path d="M0 12C-4 6 -11 0 -11 -7A11 11 0 1 1 11 -7C11 0 4 6 0 12Z" fill="#f3c96b" stroke="#fff0bc" stroke-width="1.5"/><circle cy="-7" r="3.5" fill="#17232e"/><text x="0" y="-3.5" fill="#fff">5</text></g>
+ <g transform="translate(409 353)"><path d="M0 9C-3 4 -8 0 -8 -5A8 8 0 1 1 8 -5C8 0 3 4 0 9Z" fill="#f3c96b" stroke="#fff0bc" stroke-width="1.2"/><circle cy="-5" r="2.8" fill="#17232e"/><text x="0" y="-2" fill="#fff" font-size="8">6</text></g>
+ <g transform="translate(329 405)"><path d="M0 12C-4 6 -11 0 -11 -7A11 11 0 1 1 11 -7C11 0 4 6 0 12Z" fill="#67d7c0" stroke="#d7fff4" stroke-width="1.5"/><circle cy="-7" r="3.5" fill="#17232e"/><text x="0" y="-3.5" fill="#fff">7</text></g>
+ <g transform="translate(306 423)"><path d="M0 10C-3 5 -9 0 -9 -6A9 9 0 1 1 9 -6C9 0 3 5 0 10Z" fill="#67d7c0" stroke="#d7fff4" stroke-width="1.2"/><circle cy="-6" r="3" fill="#17232e"/><text x="0" y="-3" fill="#fff" font-size="9">8</text></g>
+ <g transform="translate(174 532)"><path d="M0 13C-4 7 -12 -1 -12 -8A12 12 0 1 1 12 -8C12 -1 4 7 0 13Z" fill="#b9a2ff" stroke="#eee7ff" stroke-width="1.5"/><circle cy="-8" r="4" fill="#17232e"/><text x="0" y="-4" fill="#fff">9</text></g>
+ <g transform="translate(695 105)"><path d="M0 13C-4 7 -12 -1 -12 -8A12 12 0 1 1 12 -8C12 -1 4 7 0 13Z" fill="#ff7f73" stroke="#ffe3ce" stroke-width="1.5"/><circle cy="-8" r="4" fill="#17232e"/><text x="0" y="-4" fill="#fff">10</text></g>
 </g>
-<!-- labels -->
-<g font-family="sans-serif" fill="#e9e3d7" font-size="12" font-weight="600">
-<text x="610" y="101">TOKYO</text><text x="519" y="202">Kyoto</text><text x="489" y="238">Nara</text><text x="453" y="279">Osaka</text><text x="418" y="319">Hiroshima</text><text x="376" y="350">Miyajima</text><text x="332" y="383">Fukuoka</text><text x="286" y="408">Itoshima</text><text x="243" y="436">Kyushu</text><text x="202" y="460">Okinawa route</text><text x="120" y="520">NAHA</text><text x="709" y="77">NARITA</text>
+<!-- Etichette con fondi opachi per leggibilità -->
+<g font-family="sans-serif" font-size="12" font-weight="700" fill="#f4f1e8">
+ <g><rect x="600" y="131" width="74" height="23" rx="6" fill="#10202a" stroke="#ff7f73"/><text x="610" y="147">Tokyo</text></g>
+ <g><rect x="510" y="245" width="70" height="22" rx="6" fill="#10202a" stroke="#f3c96b"/><text x="520" y="260">Kyoto</text></g>
+ <g><rect x="496" y="273" width="53" height="20" rx="6" fill="#10202a" stroke="#f3c96b"/><text x="506" y="287">Nara</text></g>
+ <g><rect x="453" y="299" width="61" height="20" rx="6" fill="#10202a" stroke="#f3c96b"/><text x="463" y="313">Osaka</text></g>
+ <g><rect x="432" y="327" width="93" height="22" rx="6" fill="#10202a" stroke="#f3c96b"/><text x="442" y="342">Hiroshima</text></g>
+ <g><rect x="346" y="340" width="79" height="21" rx="6" fill="#10202a" stroke="#f3c96b"/><text x="356" y="354">Miyajima</text></g>
+ <g><rect x="338" y="390" width="72" height="22" rx="6" fill="#10202a" stroke="#67d7c0"/><text x="348" y="405">Fukuoka</text></g>
+ <g><rect x="250" y="420" width="68" height="22" rx="6" fill="#10202a" stroke="#67d7c0"/><text x="260" y="435">Itoshima</text></g>
+ <g><rect x="186" y="508" width="88" height="22" rx="6" fill="#10202a" stroke="#b9a2ff"/><text x="196" y="523">Okinawa</text></g>
+ <g><rect x="628" y="77" width="74" height="22" rx="6" fill="#10202a" stroke="#ff7f73"/><text x="638" y="92">Narita</text></g>
 </g>
-<g font-family="sans-serif" fill="#a2adb8" font-size="10"><text x="28" y="535">Schema illustrativo · non in scala</text><text x="28" y="551">Linea oro: tappe terrestri · tratte tratteggiate: voli</text></g>
-<g transform="translate(720 520)" stroke="#86abdf" fill="none" stroke-width="1.5"><path d="M0 24V0M-5 6L0 0 5 6"/><text x="0" y="38" text-anchor="middle" stroke="none" fill="#a2adb8" font-size="10" font-family="sans-serif">N</text></g>
+<g font-family="sans-serif" font-size="11" fill="#a9c2d1"><text x="30" y="505">ARCHIPELAGO · NOT TO SCALE</text><text x="30" y="523">Pin numerati = tappe del viaggio</text><text x="30" y="541" fill="#f3c96b">●</text><text x="44" y="541">Treno / spostamenti terrestri</text><text x="30" y="555" fill="#f18a78">●</text><text x="44" y="555">Voli interni e rientro</text></g>
 </svg></div>
 <p class="note tip"><b>Come leggere la mappa:</b> la linea dorata indica il percorso tra le tappe principali; le linee tratteggiate rappresentano i voli verso Okinawa e il rientro a Tokyo. La rappresentazione è volutamente stilizzata e non in scala.</p>
 <div class="map-pins"><b>Tappe del viaggio</b><div class="map-pin-links"><a href="https://www.google.com/maps/search/?api=1&query=Tokyo%2C%20Japan" target="_blank" rel="noopener noreferrer">Tokyo</a><a href="https://www.google.com/maps/search/?api=1&query=Kyoto%2C%20Japan" target="_blank" rel="noopener noreferrer">Kyoto</a><a href="https://www.google.com/maps/search/?api=1&query=Nara%2C%20Japan" target="_blank" rel="noopener noreferrer">Nara</a><a href="https://www.google.com/maps/search/?api=1&query=Osaka%2C%20Japan" target="_blank" rel="noopener noreferrer">Osaka</a><a href="https://www.google.com/maps/search/?api=1&query=Hiroshima%2C%20Japan" target="_blank" rel="noopener noreferrer">Hiroshima</a><a href="https://www.google.com/maps/search/?api=1&query=Miyajima%2C%20Japan" target="_blank" rel="noopener noreferrer">Miyajima</a><a href="https://www.google.com/maps/search/?api=1&query=Fukuoka%2C%20Japan" target="_blank" rel="noopener noreferrer">Fukuoka</a><a href="https://www.google.com/maps/search/?api=1&query=Itoshima%2C%20Fukuoka%2C%20Japan" target="_blank" rel="noopener noreferrer">Itoshima</a><a href="https://www.google.com/maps/search/?api=1&query=Naha%2C%20Okinawa%2C%20Japan" target="_blank" rel="noopener noreferrer">Okinawa / Naha</a><a href="https://www.google.com/maps/search/?api=1&query=Narita%20International%20Airport%2C%20Japan" target="_blank" rel="noopener noreferrer">Narita</a></div></div></section><section id="voli"><div class="shead"><span class="idx">01</span><div><h2>I voli</h2><p>Le tratte confermate del viaggio.</p></div></div><div class="flights">
