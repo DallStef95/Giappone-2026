@@ -274,3 +274,48 @@ footer{
   .reveal{opacity:1;transform:none;transition:none}
 }
 :focus-visible{outline:2px solid var(--kin);outline-offset:3px}
+
+
+/* ---------- itinerario in schede indipendenti ---------- */
+#itinerario .days{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1rem;
+  align-items:stretch;
+}
+#itinerario .day{
+  display:grid;
+  grid-template-columns:3.8rem minmax(0,1fr);
+  gap:1rem;
+  padding:1.15rem;
+  margin:0;
+  background:linear-gradient(145deg,rgba(30,40,51,.92),rgba(21,28,37,.92));
+  border:1px solid var(--rule);
+  border-radius:12px;
+  min-width:0;
+}
+#itinerario .day-mark{
+  padding-right:.8rem;
+  text-align:center;
+}
+#itinerario .day-mark::after{display:none}
+#itinerario .day-mark::before{
+  right:.05rem;
+  top:.35rem;
+  width:6px;
+  height:6px;
+}
+#itinerario .day-body{min-width:0}
+#itinerario .day-head{align-items:flex-start}
+#itinerario .day-body h3{font-size:clamp(1.35rem,3vw,1.8rem)}
+#itinerario .day-body ul{padding-left:1rem}
+#itinerario .day .note{font-size:.86rem}
+@media(min-width:46rem){
+  #itinerario .days{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1rem}
+  #itinerario .day{grid-template-columns:3.25rem minmax(0,1fr);gap:.85rem;padding:1rem}
+}
+@media(max-width:30rem){
+  #itinerario .day{grid-template-columns:2.9rem minmax(0,1fr);gap:.8rem;padding:.85rem}
+  #itinerario .day-mark{padding-right:.65rem}
+  #itinerario .day-mark .dnum{font-size:1.45rem}
+}
